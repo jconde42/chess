@@ -1,4 +1,4 @@
-class Rook
+class Rook < Piece
   def move(arg)
     #TODO
     target = arg[:target]

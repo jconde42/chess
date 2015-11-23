@@ -1,3 +1,4 @@
+require "board"
 require "pieces/piece"
 require "pieces/king"
 require "pieces/queen"

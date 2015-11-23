@@ -1,4 +1,4 @@
-class Bishop
+class Bishop < Piece
   def move(arg)
     #TODO
     target = arg[:target]

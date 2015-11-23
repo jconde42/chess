@@ -7,6 +7,12 @@ class Piece
       @team = arg[:team]
       set_unicode
     end
+
+    post_initialize(arg)
+  end
+
+  def post_initialize(arg)
+    nil
   end
 
   def move(arg)
@@ -34,7 +40,4 @@ class Piece
     end
   end
 
-  def set_position(arr) # for debugging
-    @position = arr
-  end
 end

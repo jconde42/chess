@@ -1,4 +1,4 @@
-class Knight
+class Knight < Piece
   def move(arg)
     #TODO
     target = arg[:target]
@@ -13,9 +13,9 @@ class Knight
   
   def set_unicode
     if team == "white"
-      @show = "\u254e"
+      @show = "\u265e"
     else
-      @show = "\u2548"
+      @show = "\u2658"
     end
   end
 end

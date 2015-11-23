@@ -1,10 +1,11 @@
 class Piece
-  attr_reader :position, :team
+  attr_reader :position, :team, :show
 
   def initialize(arg)
     if valid_coordinate?(arg[:position])
       @position = arg[:position]
       @team = arg[:team]
+      set_unicode
     end
   end
 
@@ -19,7 +20,7 @@ class Piece
   end
 
   def set_unicode
-    raise(NotImplementedError, "#{self.class} needs to implement set_unicode")
+    @show = "set_unicode"
   end
 
   def valid_coordinate?(arr)

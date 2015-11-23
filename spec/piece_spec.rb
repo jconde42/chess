@@ -28,5 +28,6 @@ describe Piece do
         to raise_error(NotImplementedError, "Piece needs to implement move")
     end
   end
+
 end
 #It sends  Command messages

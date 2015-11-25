@@ -3,7 +3,7 @@ Project for The Odin Project
 Command Line Chess
 
 todo:
-pieces
+pieces movement
 castling  /board.rb
 en passent
 

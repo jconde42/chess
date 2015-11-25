@@ -3,9 +3,7 @@ Project for The Odin Project
 Command Line Chess
 
 todo:
-abstract_piece
 pieces
-board
 castling  /board.rb
 en passent
 

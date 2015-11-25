@@ -1,5 +1,5 @@
 class Piece
-  attr_reader :position, :team, :show
+  attr_reader :position, :team, :show, :possible_moves
 
   def initialize(arg)
     if valid_coordinate?(arg[:position])
@@ -8,15 +8,25 @@ class Piece
       set_unicode
     end
 
-    post_initialize(arg)
-  end
-
-  def post_initialize(arg)
-    nil
+    @moved = false
   end
 
   def move(arg)
-    raise(NotImplementedError, "#{self.class} needs to implement move")
+    target = arg[:target]
+    board = arg[:board]
+    set_moves(board)
+
+    if @possible_moves.include?(target)
+      @position = target
+      @moved = true
+      return board.move(mover: self,target: target)
+    else
+      return false
+    end
+  end
+
+  def moved?
+    @moved
   end
 
   private

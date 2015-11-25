@@ -1,8 +1,10 @@
 class King < Piece
   def move(arg)
-    #TODO
+
+    #TODO king overides so it can castle
     target = arg[:target]
     board = arg[:board]
+    castle = arg.fetch(:castle, false)
 
   end
 

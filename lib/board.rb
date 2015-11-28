@@ -7,7 +7,11 @@ class Board
   end
 
   def find(arr)
-    @arr[arr[0]][arr[1]]
+    if valid_coordinate?(arr)
+      return @arr[arr[0]][arr[1]]
+    else
+      return false
+    end
   end
 
   def display
@@ -32,8 +36,9 @@ class Board
   end
 
   def move(arg)
-    mover = arg[:mover]
-    target_location = arg[:target]
+    piece_post = arg[:piece_post]
+    piece_pre_position = arg[:piece_pre_position]
+    target_position = arg[:target_position]
     castle = arg.fetch(:castle, false)
 
     if castle
@@ -41,9 +46,14 @@ class Board
     end
 
     # Move to space
-    @arr[target_location[0]][target_location[1]] = mover
-    @arr[mover.position[0]][mover.position[1]] = nil
-    return self
+    if valid_coordinate?(target_position) &&\
+        @arr[piece_pre_position[0]][piece_pre_position[1]]
+      @arr[target_position[0]][target_position[1]] = piece_post
+      @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
+      return true
+    else
+      return false
+    end
   end
 
   private
@@ -76,6 +86,17 @@ class Board
       (0..7).each do |column|
         @arr[column][6] = Pawn.new( position: [column, 6], team: "black")
       end
+    end
+  end
+
+  def valid_coordinate?(arr)
+    x = arr[0]
+    y = arr[1]
+
+    if x < 0 or x > 7 or y < 0 or y > 7
+      return false
+    else
+      return true
     end
   end
 

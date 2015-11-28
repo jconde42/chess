@@ -1,14 +1,15 @@
 class Pawn < Piece
-  def move(arg)
-    #TODO
-    target = arg[:target]
-    board = arg[:board]
-
-  end
 
   private
   def set_moves(board)
-    #TODO
+    #possible_moves = []
+    @moves = []
+
+    if team == "white"
+     @moves.push([@position[0],@position[1]+1])
+      
+    else
+    end
   end
   
   def set_unicode

@@ -1,5 +1,5 @@
 class Piece
-  attr_reader :position, :team, :show, :possible_moves
+  attr_reader :position, :team, :show, :moves
 
   def initialize(arg)
     if valid_coordinate?(arg[:position])
@@ -12,17 +12,17 @@ class Piece
   end
 
   def move(arg)
-    target = arg[:target]
+    target_position = arg[:target_position]
     board = arg[:board]
     set_moves(board)
 
-    if @possible_moves.include?(target)
-      @position = target
+    if @moves.include?(target_position)
+      @position = target_position
       @moved = true
-      return board.move(mover: self,target: target)
-    else
-      return false
+      return true
     end
+
+    return false
   end
 
   def moved?

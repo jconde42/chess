@@ -9,38 +9,55 @@ describe Board do
     it "shows the board" do
       expect{board.display}.to \
         output("---------CHESS---------\n\n   " + \
-        " a| b| c| d| e| f| g| h\n" + \
-        "8 |♖ |♘ |♗ |♕ |♔ |♗ |♘ |♖ |\n" + \
-        "7 |♙ |♙ |♙ |♙ |♙ |♙ |♙ |♙ |\n" + \
-        "6 | .| .| .| .| .| .| .| .|\n" + \
-        "5 | .| .| .| .| .| .| .| .|\n" + \
-        "4 | .| .| .| .| .| .| .| .|\n" + \
-        "3 | .| .| .| .| .| .| .| .|\n" + \
-        "2 |♟ |♟ |♟ |♟ |♟ |♟ |♟ |♟ |\n" + \
-        "1 |♜ |♞ |♝ |♛ |♚ |♝ |♞ |♜ |\n   " + \
-        " a| b| c| d| e| f| g| h\n\n").to_stdout
+               " a| b| c| d| e| f| g| h\n" + \
+               "8 |♖ |♘ |♗ |♕ |♔ |♗ |♘ |♖ |\n" + \
+               "7 |♙ |♙ |♙ |♙ |♙ |♙ |♙ |♙ |\n" + \
+               "6 | .| .| .| .| .| .| .| .|\n" + \
+               "5 | .| .| .| .| .| .| .| .|\n" + \
+               "4 | .| .| .| .| .| .| .| .|\n" + \
+               "3 | .| .| .| .| .| .| .| .|\n" + \
+               "2 |♟ |♟ |♟ |♟ |♟ |♟ |♟ |♟ |\n" + \
+               "1 |♜ |♞ |♝ |♛ |♚ |♝ |♞ |♜ |\n   " + \
+               " a| b| c| d| e| f| g| h\n\n").to_stdout
     end
   end
 
   describe "#find" do
-    xit
+    context "valid coordinate" do
+      it "returns the correct piece" do
+        board2 = Board.new
+        expect(board2.find([0,1])).to be_a(Pawn)
+        expect(board2.find([0,0])).to be_a(Rook)
+      end
+    end
+
+    context "invalid coordinate" do
+      it "returns false" do
+        expect(board.find([9,9])).to be false
+      end
+    end
   end
 
   describe "#move" do
-
-    context "valid move" do
-      xit "updates the arr" do
-      end
+    before :all do
+      @mover = Pawn.new(position: [4,1], team: "white")
+      @target_position = [4,2]
     end
 
-    context "invalid move" do
-      xit "returns false" do
-      end
-    end
-
-    context "castle" do
-      xit "correctly changes arr" do
-      end
+    it "moves to the correct square" do
+      board.move(mover: @mover, target_position: @target_position)
+      expect{board.display}.to \
+        output("---------CHESS---------\n\n   " + \
+               " a| b| c| d| e| f| g| h\n" + \
+               "8 |♖ |♘ |♗ |♕ |♔ |♗ |♘ |♖ |\n" + \
+               "7 |♙ |♙ |♙ |♙ |♙ |♙ |♙ |♙ |\n" + \
+               "6 | .| .| .| .| .| .| .| .|\n" + \
+               "5 | .| .| .| .| .| .| .| .|\n" + \
+               "4 | .| .| .| .| .| .| .| .|\n" + \
+               "3 | .| .| .| .|♟ | .| .| .|\n" + \
+               "2 |♟ |♟ |♟ |♟ | .|♟ |♟ |♟ |\n" + \
+               "1 |♜ |♞ |♝ |♛ |♚ |♝ |♞ |♜ |\n   " + \
+               " a| b| c| d| e| f| g| h\n\n").to_stdout
     end
   end
 

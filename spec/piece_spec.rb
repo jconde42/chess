@@ -22,7 +22,17 @@ describe Piece do
   end
 
   describe "#move" do
-    xit "" do
+    xit "returns a board object" do
+     # board = Board.new
+     # board.display
+     # target_position = [0,2]
+     # pawn = Pawn.new(team: "white", position: [0,1])
+     # p pawn
+     # board2 = pawn.move(board: board, target_position: target_position)
+     # board2.display
+
+     # expect(board).not_to eq(board2)
+     # 
     end
   end
 

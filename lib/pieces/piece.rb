@@ -1,5 +1,5 @@
 class Piece
-  attr_reader :position, :team, :show, :moves
+  attr_reader :position, :team, :show, :moves, :special
 
   def initialize(arg)
     if valid_coordinate?(arg[:position])
@@ -9,6 +9,7 @@ class Piece
     end
 
     @moved = false
+    @special = false
   end
 
   def move(arg)
@@ -18,11 +19,17 @@ class Piece
 
     if @moves.include?(target_position)
       @position = target_position
+
+      special_hook(arg)
+
       @moved = true
       return true
     end
 
     return false
+  end
+
+  def special_hook(arg)
   end
 
   def moved?

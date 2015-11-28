@@ -40,12 +40,15 @@ describe Board do
 
   describe "#move" do
     before :all do
-      @mover = Pawn.new(position: [4,1], team: "white")
+      @piece_post = Pawn.new(position: [4,2], team: "white")
+      @piece_pre_position = [4,1]
       @target_position = [4,2]
     end
 
     it "moves to the correct square" do
-      board.move(mover: @mover, target_position: @target_position)
+      board.move(piece_post: @piece_post, \
+                piece_pre_position: @piece_pre_position)
+
       expect{board.display}.to \
         output("---------CHESS---------\n\n   " + \
                " a| b| c| d| e| f| g| h\n" + \

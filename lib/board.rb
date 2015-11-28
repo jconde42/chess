@@ -38,17 +38,29 @@ class Board
   def move(arg)
     piece_post = arg[:piece_post]
     piece_pre_position = arg[:piece_pre_position]
-    target_position = arg[:target_position]
-    castle = arg.fetch(:castle, false)
+    special = arg[:special]
 
-    if castle
-      #TODO
+    case special
+    when "castle"
+    when "en passent"
+    when "promotion"
+      if piece_post.team == "white"
+        @arr[piece_post.position[0]][piece_post.position[1]] = \
+          Queen.new(position: piece_post.position, team: "white")
+        @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
+        return true
+      else
+        @arr[piece_post.position[0]][piece_post.position[1]] = \
+          Queen.new(position: piece_post.position, team: "black")
+        @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
+        return true
+      end
     end
 
     # Move to space
-    if valid_coordinate?(target_position) &&\
+    if valid_coordinate?(piece_post.position) &&\
         @arr[piece_pre_position[0]][piece_pre_position[1]]
-      @arr[target_position[0]][target_position[1]] = piece_post
+      @arr[piece_post.position[0]][piece_post.position[1]] = piece_post
       @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
       return true
     else

@@ -17,22 +17,30 @@ def play
     puts " It is #{turn}'s turn"
     inputs = get_inputs
 
-    # board.move(mover: board.find(inputs[:mover_position]),\
-    #          target_position: inputs[:target_position])
-
-    # mover = board.find(inputs[:mover_position])
-    # target_position = inputs[:target_position]
-
-    # board.move(mover: mover, target_position: target_position)
-
     target_position = inputs[:target_position] 
     piece = board.find(inputs[:piece_position])
+
+    # selected a black space to move?
+    if piece.nil?
+      puts "There is no piece at that position (Press Enter)"
+      gets
+      next
+    end
+
+    # selected the other teams piece?
+ #   if piece.team != turn
+ #     puts "That's not your piece (Press Enter)"
+ #     gets
+ #     next
+ #   end
+
     pre_move_position = piece.position
 
-    if piece.move(target_position: target_position, board: board.clone)
-      board.move(piece_pre_position: pre_move_position, \
-                 target_position: target_position, \
-                 piece_post: piece)
+    if piece.move(target_position: target_position, board: board)
+        board.move(piece_pre_position: pre_move_position,
+                   piece_post: piece,
+                   special: piece.special)
+        turn = change_turn(turn)
     end
 
   end

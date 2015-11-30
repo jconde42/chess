@@ -10,6 +10,7 @@ class Piece
 
     @moved = false
     @special = false
+    @moves = []
   end
 
   def move(arg)

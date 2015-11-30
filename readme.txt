@@ -4,6 +4,7 @@ Command Line Chess
 
 todo:
 pawn tests
+rook tests
 en passent
 
 pieces movement

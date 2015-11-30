@@ -3,9 +3,11 @@ Project for The Odin Project
 Command Line Chess
 
 todo:
+pawn tests
+en passent
+
 pieces movement
 castling  /board.rb
-en passent
 
 
 rules of castling

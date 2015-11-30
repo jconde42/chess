@@ -5,6 +5,7 @@ Command Line Chess
 todo:
 pawn tests
 rook tests
+knight tests
 en passent
 
 pieces movement

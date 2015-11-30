@@ -75,9 +75,6 @@ class Rook < Piece
         break
       end
     end
-   
-
-
   end
 
   def set_unicode

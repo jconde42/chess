@@ -7,6 +7,7 @@ pawn tests
 rook tests
 knight tests
 bishop tests
+queen tests
 en passent
 
 pieces movement

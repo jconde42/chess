@@ -6,6 +6,7 @@ todo:
 pawn tests
 rook tests
 knight tests
+bishop tests
 en passent
 
 pieces movement

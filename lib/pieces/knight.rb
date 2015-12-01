@@ -1,6 +1,5 @@
 class Knight < Piece
 
-  private
   def set_moves(board)
     x = @position[0]
     y = @position[1]
@@ -31,8 +30,9 @@ class Knight < Piece
         next
       end
     end
-
   end
+
+  private
   
   def set_unicode
     if team == "white"

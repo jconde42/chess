@@ -1,7 +1,5 @@
 class Rook < Piece
 
-  private
-
   def set_moves(board)
     x = @position[0]
     y = @position[1]
@@ -12,15 +10,20 @@ class Rook < Piece
         break
       end
 
+      if !board.arr[x][row].nil? && board.arr[x][row].team != @team
+        @moves.push([x,row])
+        break
+      end
+
+      if !board.arr[x][row].nil? && board.arr[x][row].team == @team
+        break
+      end
+
       if board.arr[x][row].nil?
         @moves.push([x,row])
         next
       end
 
-      if board.arr[x][row].team != @team
-        @moves.push([x,row])
-        break
-      end
     end
 
     # moves right
@@ -29,15 +32,20 @@ class Rook < Piece
         break
       end
 
+      if !board.arr[column][y].nil? &&  board.arr[column][y].team != @team
+        @moves.push([column,y])
+        break
+      end
+
+      if !board.arr[column][y].nil? && board.arr[column][y].team == @team
+        break
+      end
+
       if board.arr[column][y].nil?
         @moves.push([column,y])
         next
       end
 
-      if board.arr[column][y].team != @team
-        @moves.push([column,y])
-        break
-      end
     end
     
     # moves down
@@ -47,14 +55,18 @@ class Rook < Piece
         break
       end
 
+      if !board.arr[x][row].nil? &&  board.arr[x][row].team != @team
+        @moves.push([x,row])
+        break
+      end
+
+      if !board.arr[x][row].nil? && board.arr[x][row].team == @team
+        break
+      end
+
       if board.arr[x][row].nil?
         @moves.push([x,row])
         next
-      end
-
-      if board.arr[x][row].team != @team
-        @moves.push([x,row])
-        break
       end
     end
     
@@ -65,17 +77,23 @@ class Rook < Piece
         break
       end
 
+      if !board.arr[column][y].nil? &&  board.arr[column][y].team != @team
+        @moves.push([column, y])
+        break
+      end
+
+      if !board.arr[column][y].nil? && board.arr[column][y].team == @team
+        break
+      end
+
       if board.arr[column][y].nil?
         @moves.push([column, y])
         next
       end
-
-      if board.arr[column][y].team != @team
-        @moves.push([column, y])
-        break
-      end
     end
   end
+
+  private
 
   def set_unicode
     if team == "white"

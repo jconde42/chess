@@ -1,6 +1,5 @@
 class Bishop < Piece
 
-  private
   def set_moves(board)
     x = @position[0]
     y = @position[1]
@@ -20,6 +19,10 @@ class Bishop < Piece
         @moves.push([x+i, y+i])
         break
       end
+
+      if board.arr[x+i][y+i].team == @team
+        break
+      end
     end
 
     # negative right
@@ -35,6 +38,10 @@ class Bishop < Piece
 
       if board.arr[x+i][y-i].team != @team
         @moves.push([x+i, y-i])
+        break
+      end
+
+      if board.arr[x+i][y-i].team == @team
         break
       end
     end
@@ -54,6 +61,10 @@ class Bishop < Piece
         @moves.push([x-i, y+i])
         break
       end
+      
+      if board.arr[x-i][y+i].team == @team
+        break
+      end
     end
 
     # negative left
@@ -71,9 +82,14 @@ class Bishop < Piece
         @moves.push([x-i, y-i])
         break
       end
+
+      if board.arr[x-i][y-i].team == @team
+        break
+      end
     end
   end
 
+  private
   def set_unicode
     if team == "white"
       @show = "\u265d"

@@ -6,6 +6,42 @@ class Board
     populate_arr
   end
 
+  def all_pieces
+    all_pieces = []
+
+    @arr.each_with_index do |row|
+      row.each do |piece|
+        if !piece.nil?
+          all_pieces.push(piece)
+        end
+      end
+    end
+
+    all_pieces
+  end
+
+  def all_white_pieces
+    white_pieces = []
+    all_pieces.each do |piece|
+      if piece.team == "white"
+        white_pieces.push(piece)
+      end
+    end
+
+    white_pieces
+  end
+
+  def all_black_pieces
+    black_pieces = []
+    all_pieces.each do |piece|
+      if piece.team == "black"
+        black_pieces.push(piece)
+      end
+    end
+
+    black_pieces
+  end
+
   def find(arr)
     if valid_coordinate?(arr)
       return @arr[arr[0]][arr[1]]

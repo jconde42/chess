@@ -1,15 +1,38 @@
 class Pawn < Piece
 
   def special_hook(arg)
-      # Check for promotion
-      if @team == "white" && @position[1] == 7
-        @special = "promotion"
-      elsif @team == "black" && @position[1] == 0
-        @special = "promotion"
-      end
+    # Check for promotion
+    if @team == "white" && @position[1] == 7
+      @special = "promotion"
+    elsif @team == "black" && @position[1] == 0
+      @special = "promotion"
+    end
   end
 
-  private
+  def set_attacking_moves(board)
+    x = @position[0]
+    y = @position[1]
+    if team == "white"
+
+      possible_attacking = [
+        [x-1,y+1],
+        [x+1,y+1]
+      ]
+    else
+      possible_attacking = [
+        [x-1,y-1],
+        [x+1,y-1]
+      ]
+    end
+
+    @attacking_moves = []
+    possible_attacking.each do |move|
+      if valid_coordinate?(move)
+        @attacking_moves.push(move)
+      end
+    end
+  end
+
   def set_moves(board)
     x = @position[0]
     y = @position[1]
@@ -90,6 +113,7 @@ class Pawn < Piece
     @moves
   end
 
+  private
   def set_unicode
     if team == "white"
       @show = "\u265f"

@@ -5,6 +5,12 @@ describe Board do
 
   let(:board) { Board.new }
 
+  describe "#all_pieces" do
+    it "returns a list of all pieces left on the board" do
+      expect(board.all_pieces).to be_an(Array)
+    end
+  end
+
   describe "#display" do
     it "shows the board" do
       expect{board.display}.to \
@@ -47,7 +53,7 @@ describe Board do
 
     it "moves to the correct square" do
       board.move(piece_post: @piece_post, \
-                piece_pre_position: @piece_pre_position)
+                 piece_pre_position: @piece_pre_position)
 
       expect{board.display}.to \
         output("---------CHESS---------\n\n   " + \

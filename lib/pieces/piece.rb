@@ -18,8 +18,11 @@ class Piece
     target_position = arg[:target_position]
     board = arg[:board]
     set_moves(board)
-    p moves
-    gets
+#    p moves
+#    board.all_pieces.each do |piece|
+#      print piece.show
+#    end
+#    gets
 
     if @moves.include?(target_position)
       @position = target_position

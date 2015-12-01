@@ -54,8 +54,9 @@ class King < Piece
         next
       end
 
-      #enemy
-      if board.arr[move[0]][move[1]].team != @team && \
+      #enemy not being protected
+      if !board.arr[move[0]][move[1]].nil? && \
+          board.arr[move[0]][move[1]].team != @team && \
           clear?(arr: move, board: board)
         @moves.push(move)
         next
@@ -71,9 +72,6 @@ class King < Piece
     if @team == "white"
       board.all_black_pieces.each do |piece|
         piece.set_attacking_moves(board)
-        p piece.show
-        p piece.attacking_moves
-        gets
         if piece.attacking_moves.include?(arr)
           return false
         end

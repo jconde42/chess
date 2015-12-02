@@ -1,5 +1,6 @@
 class King < Piece
   def special_hook(arg)
+    #TODO castleing
     #  target_position = arg[:target_position]
     #  board = arg[:board]
   end
@@ -47,9 +48,11 @@ class King < Piece
         next
       end
 
+      not_being_attacked = clear?(arr: move, board: board)
+
       #empty square if not being attacked
       if board.arr[move[0]][move[1]].nil? && \
-          clear?(arr: move, board: board)
+          not_being_attacked
         @moves.push(move)
         next
       end
@@ -57,7 +60,7 @@ class King < Piece
       #enemy not being protected
       if !board.arr[move[0]][move[1]].nil? && \
           board.arr[move[0]][move[1]].team != @team && \
-          clear?(arr: move, board: board)
+          not_being_attacked
         @moves.push(move)
         next
       end

@@ -48,7 +48,7 @@ class King < Piece
         next
       end
 
-      not_being_attacked = clear?(arr: move, board: board)
+      not_being_attacked = board.clear?(arr: move, team: @team)
 
       #empty square if not being attacked
       if board.arr[move[0]][move[1]].nil? && \
@@ -65,32 +65,6 @@ class King < Piece
         next
       end
     end
-  end
-
-  #checks that a position is not being attacked by the other team
-  def clear?(arg)
-    arr = arg[:arr]
-    board = arg[:board]
-
-    if @team == "white"
-      board.all_black_pieces.each do |piece|
-        piece.set_attacking_moves(board)
-        if piece.attacking_moves.include?(arr)
-          return false
-        end
-      end
-    end
-
-    if @team == "black"
-      board.all_white_pieces.each do |piece|
-        piece.set_attacking_moves(board)
-        if piece.attacking_moves.include?(arr)
-          return false
-        end
-      end
-    end
-
-    true
   end
 
   private

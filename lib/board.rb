@@ -104,6 +104,31 @@ class Board
     end
   end
 
+  #checks that a position is not being attacked by the other team
+  def clear?(arg)
+    arr = arg[:arr]
+    team = arg[:team]
+
+    if team == "white"
+      self.all_black_pieces.each do |piece|
+        piece.set_attacking_moves(self)
+        if piece.attacking_moves.include?(arr)
+          return false
+        end
+      end
+    end
+
+    if team == "black"
+      self.all_white_pieces.each do |piece|
+        piece.set_attacking_moves(self)
+        if piece.attacking_moves.include?(arr)
+          return false
+        end
+      end
+    end
+
+    true
+  end
   private
   def populate_arr(empty = false)
     #White Pieces

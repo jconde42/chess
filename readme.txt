@@ -3,14 +3,18 @@ Project for The Odin Project
 Command Line Chess
 
 todo:
+castling
+en passent
+winning condition
+
+piece tests
 pawn tests
 rook tests
 knight tests
 bishop tests
 queen tests
-en passent
+king tests
 
-pieces movement
 castling  /board.rb
 
 

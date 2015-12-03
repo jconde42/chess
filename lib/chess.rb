@@ -50,8 +50,8 @@ end
 def get_inputs
   puts "Enter a move: (mover, target)"
   raw = gets.chomp
-  mover = raw.split(", ")[0]
-  target = raw.split(", ")[1]
+  mover = raw[/^../]
+  target = raw[/..$/]
 
   return { piece_position: numerate(mover), target_position: numerate(target) }
 end

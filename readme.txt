@@ -3,7 +3,6 @@ Project for The Odin Project
 Command Line Chess
 
 todo:
-castling
 en passent
 winning condition
 
@@ -15,15 +14,6 @@ bishop tests
 queen tests
 king tests
 
-castling  /board.rb
-
-
-rules of castling
-1. neither the rook nor the king may have been previesly moved
-2. there must be no piece between the king and rook
-3.      a. the king may not be in check
-        b. the king may not pass through squares that are under attack
-        c. the king may not move to a square where it is in check
 
 
 

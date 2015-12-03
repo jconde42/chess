@@ -5,6 +5,7 @@ Command Line Chess
 todo:
 winning condition
 draw conditions
+standard notation for moving
 
 piece tests
 pawn tests

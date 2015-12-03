@@ -73,7 +73,7 @@ class King < Piece
 
     if !moved?
       #left castle hasn't moved
-      if !board.arr[0][y].moved?
+      if !board.arr[0][y].nil? && !board.arr[0][y].moved?
         # No pieces between king and rook
         if board.arr[1][y].nil? && board.arr[2][y].nil? && board.arr[3][y].nil?
           #king not in check
@@ -88,7 +88,7 @@ class King < Piece
       end
 
       #right castle hasn't moved
-      if !board.arr[7][y].moved?
+      if !board.arr[7][y].nil? && !board.arr[7][y].moved?
         # No pieces between king and rook
         if board.arr[6][y].nil? && board.arr[5][y].nil?
           #king not in check

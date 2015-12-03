@@ -18,6 +18,8 @@ class Piece
     target_position = arg[:target_position]
     board = arg[:board]
     set_moves(board)
+    p @moves
+    gets
 
     if @moves.include?(target_position)
       old_position = @position

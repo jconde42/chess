@@ -29,11 +29,11 @@ def play
       end
 
       # selected the other teams piece?
-      #   if piece.team != turn
-      #     puts "That's not your piece (Press Enter)"
-      #     gets
-      #     next
-      #   end
+         if piece.team != turn
+           puts "That's not your piece (Press Enter)"
+           gets
+           next
+         end
 
       pre_move_position = piece.position
 
@@ -46,6 +46,13 @@ def play
     else
       puts "That not a valid move (Press Enter)"
       gets
+    end
+
+    # change all other pawns to get ride of en_passant
+    board.all_pawns(turn).each do |pawn|
+      if pawn.special == "en passant"
+        pawn.set_special(false)
+      end
     end
 
   end

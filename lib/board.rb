@@ -6,6 +6,18 @@ class Board
     populate_arr
   end
 
+  def all_pawns(team)
+    pawns = []
+
+    all_pieces.each do |piece|
+      if piece.class == Pawn && piece.team == team
+        pawns.push(piece)
+      end
+    end
+
+    pawns
+  end
+
   def all_pieces
     all_pieces = []
 
@@ -100,7 +112,16 @@ class Board
           @arr[piece_post.position[0]-1][piece_post.position[1]] = rook
           return true
         end
-    when "en passent"
+    when "attacking en passant"
+      @arr[piece_post.position[0]][piece_post.position[1]] = piece_post
+
+      if piece_post.team == "white"
+        @arr[piece_post.position[0]][piece_post.position[1]-1] = nil
+      elsif piece_post.team == "black"
+        @arr[piece_post.position[0]][piece_post.position[1]+1] = nil
+      end
+
+      @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
     when "promotion"
       if piece_post.team == "white"
         @arr[piece_post.position[0]][piece_post.position[1]] = \

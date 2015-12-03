@@ -1,8 +1,13 @@
 class King < Piece
   def special_hook(arg)
-    #TODO castleing
-    #  target_position = arg[:target_position]
-    #  board = arg[:board]
+    target_position = arg[:target_position]
+    old_position = arg[:old_position]
+    x = old_position[0]
+    y = old_position[1]
+
+    if target_position == [x-2,y] or target_position == [x+2,y]
+      @special = "castle"
+    end
   end
 
   def set_attacking_moves(board)
@@ -65,15 +70,47 @@ class King < Piece
         next
       end
     end
-  end
 
-  private
+    if !moved?
+      #left castle hasn't moved
+      if !board.arr[0][y].moved?
+        # No pieces between king and rook
+        if board.arr[1][y].nil? && board.arr[2][y].nil? && board.arr[3][y].nil?
+          #king not in check
+          if board.clear?(team: @team, arr: @position)
+            #squares inbetween or destination is not being attacked
+            if board.clear?(team: @team, arr: [2,y]) &&\
+                board.clear?(team: @team, arr: [3,y])
+              @moves.push([x-2,y])
+            end
+          end
+        end
+      end
 
-  def set_unicode
-    if team == "white"
-      @show = "\u265a"
-    else
-      @show = "\u2654"
+      #right castle hasn't moved
+      if !board.arr[7][y].moved?
+        # No pieces between king and rook
+        if board.arr[6][y].nil? && board.arr[5][y].nil?
+          #king not in check
+          if board.clear?(team: @team, arr: @position)
+            #squares inbetween or destination is not being attacked
+            if board.clear?(team: @team, arr: [5,y]) &&\
+                board.clear?(team: @team, arr: [6,y])
+              @moves.push([x+2,y])
+            end
+          end
+        end
+      end
     end
   end
+
+    private
+
+    def set_unicode
+      if team == "white"
+        @show = "\u265a"
+      else
+        @show = "\u2654"
+      end
+    end
 end

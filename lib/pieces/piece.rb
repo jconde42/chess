@@ -18,16 +18,12 @@ class Piece
     target_position = arg[:target_position]
     board = arg[:board]
     set_moves(board)
-#    p moves
-#    board.all_pieces.each do |piece|
-#      print piece.show
-#    end
-#    gets
 
     if @moves.include?(target_position)
+      old_position = @position
       @position = target_position
 
-      special_hook(arg)
+      special_hook(arg.merge(old_position: old_position))
 
       @moved = true
       return true

@@ -78,6 +78,28 @@ class Board
 
     case special
     when "castle"
+        #left castle
+        if piece_post.position[0] < piece_pre_position[0]
+          #set king
+          @arr[piece_post.position[0]][piece_post.position[1]] = piece_post
+          @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
+          #set rook
+          rook = find([0,piece_pre_position[1]])
+          rook.set_position([piece_post.position[0]+1,piece_post.position[1]])
+          @arr[0][piece_pre_position[1]] = nil
+          @arr[piece_post.position[0]+1][piece_post.position[1]] = rook
+          return true
+        else #right castle
+          #set king
+          @arr[piece_post.position[0]][piece_post.position[1]] = piece_post
+          @arr[piece_pre_position[0]][piece_pre_position[1]] = nil
+          #set rook
+          rook = find([7,piece_pre_position[1]])
+          rook.set_position([piece_post.position[0]-1,piece_post.position[1]])
+          @arr[7][piece_pre_position[1]] = nil
+          @arr[piece_post.position[0]-1][piece_post.position[1]] = rook
+          return true
+        end
     when "en passent"
     when "promotion"
       if piece_post.team == "white"

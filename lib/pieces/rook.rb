@@ -1,4 +1,8 @@
 class Rook < Piece
+  def set_position(arr)
+    @position = arr
+    @moved = true
+  end
 
   def set_moves(board)
     x = @position[0]

@@ -18,7 +18,7 @@ def play
     inputs = get_inputs
 
     if inputs
-      target_position = inputs[:target_position] 
+      target_position = inputs[:target_position]
       piece = board.find(inputs[:piece_position])
 
       # selected a black space to move?
@@ -97,3 +97,5 @@ def numerate string
   arr[1] = string[1].to_i-1
   arr
 end
+
+play

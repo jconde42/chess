@@ -1,6 +1,7 @@
 Project for The Odin Project
 
 Command Line Chess
+usage: ruby lib/chess.rb
 
 todo:
 winning condition
